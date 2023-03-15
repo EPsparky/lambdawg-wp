@@ -1,0 +1,115 @@
+#navbar-container {
+  width: 100vw;
+  min-height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+  margin: 0px;
+  border-bottom: 1px solid $nav-border;
+  background-color: $nav-background-color;
+  z-index: 999;
+}
+
+.nav-item-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.nav-item-logo {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+.nav-item-logo > h1 {
+  color: $lambdawg-color;
+}
+
+.mascot {
+  height: 6vh;
+  transform: scaleX(-1);
+  margin-right: 10px;
+}
+
+#hamburger-icon {
+  visibility: hidden;
+}
+
+.collapse-burger-menu {
+  visibility: hidden;
+}
+
+#desktop-menu {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: center;
+  align-items: baseline;
+}
+#desktop-menu > li {
+  padding: 1rem 0px 0.8rem 1rem;
+}
+
+// media queries
+@media (max-width: 1000px) {
+  /////////////
+
+  ////////////
+
+  #desktop-menu {
+    display: none;
+  }
+  .collapse-desktop-menu {
+    visibility: hidden;
+  }
+
+  #navbar-container {
+    position: fixed;
+    z-index: 999;
+  }
+
+  #hamburger-icon {
+    visibility: visible;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .nav-icon {
+    visibility: hidden;
+  }
+
+  #hamburger-icon {
+    visibility: visible;
+    margin: 0px 1rem 0px 0px;
+    color: $hamburger-icon-color;
+    font-size: 1.5rem;
+  }
+
+  #hamburger-menu {
+    position: fixed;
+    background-color: $hamburger-menu-bg-color;
+    margin: 0px;
+    padding: 1rem 1rem 0px 1rem;
+    width: 100vw;
+    max-width: 15rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 3rem;
+    right: 0px;
+    list-style: none;
+    z-index: 998;
+    border-bottom-left-radius: 30px;
+  }
+
+  #hamburger-menu > li {
+    background-color: $hamburger-menu-bg-color;
+    padding: 1rem;
+    border-top: 1px solid $hamburger-menu-lines;
+    border-bottom-left-radius: 30px;
+    color: $hamburger-menu-lines;
+    z-index: 999;
+  }
+}
