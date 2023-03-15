@@ -1,0 +1,21 @@
+
+# General
+.DS_Store
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+
+# SecretPage
+
+server/aws/
+
+#.env
+
+.env
+
+# postgres table creator
+
+postgres_table_create.sql

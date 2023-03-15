@@ -1,60 +1,67 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-const isProduction = process.env.NODE_ENV == "production";
-
-const stylesHandler = isProduction
-  ? MiniCssExtractPlugin.loader
-  : "style-loader";
-
-const config = {
-  entry: "./src/main.js",
+module.exports = {
+  entry: [
+        // entry point of our app
+        './src/main.js'
+      ],
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    filename: 'bundle.js',
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "index.html",
-    }),
+  devtool: 'eval-source-map',
+  mode: 'development',
+  devServer: {
+    // Required for Docker to work with dev server
+    host: '0.0.0.0',
+    //host: localhost,
+    port: 8080,
+    //enable HMR on the devServer
+    hot: true,
+    // fallback to root for other urls
+    historyApiFallback: true,
 
-    // Add your plugins here
-    // Learn more about plugins from https://webpack.js.org/configuration/plugins/
-  ],
+    static: {
+      // match the output path
+      directory: path.resolve(__dirname, 'dist'),
+      //match the output 'publicPath'
+      publicPath: '/'
+    },
+
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    // proxy is required in order to make api calls to express server while using hot-reload webpack server
+    // routes api fetch requests from localhost:8080/api/* (webpack dev server) to localhost:3000/api/* (where our Express server is running)
+    proxy: {
+      '/api/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+    },
+  },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/i,
-        loader: "babel-loader",
+        test: /.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },        
       },
       {
-        test: /\.css$/i,
-        use: [stylesHandler, "css-loader"],
+        test: /.(css|scss)$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],        
       },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [stylesHandler, "css-loader", "sass-loader"],
-      },
-      {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: "asset",
-      },
-
-      // Add your rules for custom modules here
-      // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
-};
-
-module.exports = () => {
-  if (isProduction) {
-    config.mode = "production";
-
-    config.plugins.push(new MiniCssExtractPlugin());
-  } else {
-    config.mode = "development";
-  }
-  return config;
-};
+  plugins: [
+    new HtmlWebpackPlugin({
+      // favicon: path.resolve(__dirname, './client/assets/images/mm.ico'),
+      template: './index.html'
+    })
+  ]
+};    
+          
