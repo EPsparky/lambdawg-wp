@@ -30,7 +30,7 @@ app.use(
 );
 app.use(cookieParser());
 
-app.use(express.static(path.resolve(__dirname, '../src')));
+app.use(express.static(path.resolve(__dirname, './dist')));
 
 //Define Route handlers Here
 //---------------

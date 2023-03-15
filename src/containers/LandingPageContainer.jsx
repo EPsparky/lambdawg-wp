@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const LandingPageContainer = (props) => {
-  const mascot = "src/assets/logo.png";
-  const video1 = "src/assets/mock-video1.gif";
-  const mobilemap = "src/assets/mobile-map.png";
-  const mobilelog = "src/assets/mobile-logs.png";
-  const mobilemetrics = "src/assets/mobile-metrics.png";
-  const screenshot = "src/assets/desktop.png";
+  const mascot = "../assets/logo.png";
+  const video1 = "../assets/mock-video1.gif";
+  const mobilemap = "../assets/mobile-map.png";
+  const mobilelog = "../assets/mobile-logs.png";
+  const mobilemetrics = "../assets/mobile-metrics.png";
+  const screenshot = "../assets/desktop.png";
 
   return (
     <div>
