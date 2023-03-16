@@ -2,17 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const LandingPageContainer = (props) => {
-  const mascot = "../assets/logo.png";
-  const video1 = "../assets/mock-video1.gif";
-  const mobilemap = "../assets/mobile-map.png";
-  const mobilelog = "../assets/mobile-logs.png";
-  const mobilemetrics = "../assets/mobile-metrics.png";
-  const screenshot = "../assets/desktop.png";
-  // path.resolve(__dirname, "../assets/desktop.png")
+  const mascot = "assets/images/logo.png";
+  const video1 = "assets/images/mock-video1.gif";
+  const mobilemap = "assets/images/mobile-map.png";
+  const mobilelog = "assets/images/mobile-logs.png";
+  const mobilemetrics = "assets/images/mobile-metrics.png";
+  const screenshot = "assets/images/desktop.png";
+
   return (
     <div>
       <div id="landing-page-container">
-        <img src={mascot} className="landing-logo" />
+        <img src="assets/images/logo.png" className="landing-logo" />
 
         <p>An amazing app that blows socks off of seasoned developers.</p>
         <div className="button-flex-wrapper">
@@ -42,7 +42,7 @@ const LandingPageContainer = (props) => {
 
           <div className="info-card-wrapper">
             <img src={screenshot} className="screen-shot" />
-            <img src={mobilemap} className="screen-shot-mobile" />
+            <img src="assets/images/mobile-map.png" className="screen-shot-mobile" />
             <img src={mobilemetrics} className="screen-shot-mobile" />
             <img src={mobilelog} className="screen-shot-mobile" />
           </div>

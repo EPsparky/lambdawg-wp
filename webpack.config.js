@@ -1,22 +1,22 @@
-const webpack = require('webpack');
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require("webpack");
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: [
-        // entry point of our app
-        './src/main.js'
-      ],
+    // entry point of our app
+    "./src/main.js",
+  ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
+    filename: "bundle.js",
   },
-  devtool: 'eval-source-map',
-  mode: 'development',
+  devtool: "eval-source-map",
+  mode: "development",
   devServer: {
     // Required for Docker to work with dev server
-    host: '0.0.0.0',
+    host: "0.0.0.0",
     //host: localhost,
     port: 8080,
     //enable HMR on the devServer
@@ -26,17 +26,17 @@ module.exports = {
 
     static: {
       // match the output path
-      directory: path.resolve(__dirname, 'dist'),
+      directory: path.resolve(__dirname, "dist"),
       //match the output 'publicPath'
-      publicPath: '/'
+      publicPath: "/",
     },
 
-    headers: { 'Access-Control-Allow-Origin': '*' },
+    headers: { "Access-Control-Allow-Origin": "*" },
     // proxy is required in order to make api calls to express server while using hot-reload webpack server
     // routes api fetch requests from localhost:8080/api/* (webpack dev server) to localhost:3000/api/* (where our Express server is running)
     proxy: {
-      '/api/**': {
-        target: 'http://localhost:3000/',
+      "/api/**": {
+        target: "http://localhost:3000/",
         secure: false,
       },
     },
@@ -47,21 +47,30 @@ module.exports = {
         test: /.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-        },        
+          loader: "babel-loader",
+        },
       },
       {
         test: /.(css|scss)$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],        
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+          outputPath: "assets/",
+          publicPath: "/assets/",
+          mimetype: "image/png",
+        },
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       // favicon: path.resolve(__dirname, './client/assets/images/mm.ico'),
-      template: './index.html'
-    })
-  ]
-};    
-          
+      template: "./index.html",
+    }),
+  ],
+};
