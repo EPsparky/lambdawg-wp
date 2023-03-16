@@ -8,7 +8,7 @@ const LandingPageContainer = (props) => {
   const mobilelog = "../assets/mobile-logs.png";
   const mobilemetrics = "../assets/mobile-metrics.png";
   const screenshot = "../assets/desktop.png";
-
+  // path.resolve(__dirname, "../assets/desktop.png")
   return (
     <div>
       <div id="landing-page-container">
